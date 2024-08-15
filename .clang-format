@@ -1,0 +1,21 @@
+---
+
+# clang-format documentation
+# http://clang.llvm.org/docs/ClangFormat.html
+# http://clang.llvm.org/docs/ClangFormatStyleOptions.html
+
+# Preexisting formats:
+# LLVM
+# Google
+# Chromium
+# Mozilla
+# WebKit
+# Microsoft
+# GNU
+
+Language:        Cpp
+BasedOnStyle:   LLVM
+ColumnLimit:     120
+IndentWidth:     3
+...
+
