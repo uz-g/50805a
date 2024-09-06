@@ -27,8 +27,10 @@ pros::Motor LeftMid(2, pros::v5::MotorGears::blue,
                     pros::v5::MotorUnits::degrees);
 pros::Motor RightMid(-3, pros::v5::MotorGears::blue,
                      pros::v5::MotorUnits::degrees);
-pros::Motor IntakeMotor(-9, pros::v5::MotorGears::blue,
+pros::Motor IntakeMotor(-9, pros::v5::MotorGears::green,
                         pros::v5::MotorUnits::degrees);
+pros::Motor TopIntakeMotor(10, pros::v5::MotorGears::blue,
+                           pros::v5::MotorUnits::degrees);
 
 pros::adi::DigitalIn drivetrainToggleSwitch('G');
 pros::adi::DigitalIn autonToggleSwitch('F');
@@ -55,7 +57,7 @@ lemlib::Drivetrain drivetrain{
     &drive_right,  // right drivetrain motors
     12.125,        // track width
     lemlib::Omniwheel::OLD_325,
-    450,  // drivetrain rpm is 450
+    480,  // drivetrain rpm is 450
     2     // horizontal drift is 2
 };
 
