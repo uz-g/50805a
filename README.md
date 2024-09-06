@@ -1,8 +1,8 @@
 <h1 align="center">50805a.</h1>
 
 <p align="center">
-    <a href="https://github.com/uz-g/saf50805a/pulse"><img src="https://img.shields.io/github/last-commit/uz-g/saf50805a?style=for-the-badge&logo=github&color=7dc4e4&logoColor=D9E0EE&labelColor=302D41"></a>
-    <a href="https://github.com/uz-g/saf50805a/stargazers"><img src="https://img.shields.io/github/stars/uz-g/saf50805a?style=for-the-badge&logo=apachespark&color=eed49f&logoColor=D9E0EE&labelColor=302D41"></a>
+    <a href="https://github.com/uz-g/50805a/pulse"><img src="https://img.shields.io/github/last-commit/uz-g/50805a?style=for-the-badge&logo=github&color=7dc4e4&logoColor=D9E0EE&labelColor=302D41"></a>
+    <a href="https://github.com/uz-g/50805a/stargazers"><img src="https://img.shields.io/github/stars/uz-g/50805a?style=for-the-badge&logo=apachespark&color=eed49f&logoColor=D9E0EE&labelColor=302D41"></a>
 </p>
 this project implements a control system for 50805A VEX V5 team using pros and lemlib.
 
