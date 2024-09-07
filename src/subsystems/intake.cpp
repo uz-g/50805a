@@ -17,12 +17,9 @@ Intake::Intake()
 void Intake::run()
 {
 	if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
-		IntakeMotor.move(127);
-	} else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
-		IntakeMotor.move(-127);
-	} else {
-		IntakeMotor.brake();
-	}
+		IntakeMotor.move_velocity(200);
+	} else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1))
+		IntakeMotor.move(-200);
 }
 
 void Intake::toggle()
