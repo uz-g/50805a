@@ -1,6 +1,8 @@
 #include "main.h"
 
+#include "globals.h"
 #include "pros/apix.h"
+#include "pros/motors.h"
 
 using namespace Robot;
 using namespace Robot::Globals;
@@ -33,12 +35,16 @@ struct RobotScreen {
  */
 
 void initialize() {
+   //IMU Plugged in at port number 15
    if (pros::c::registry_get_plugged_type(15) == pros::c::E_DEVICE_IMU) {
       chassis.calibrate();
    }
    chassis.setPose(0, 0, 0);
 
    screen.selector.selector();
+
+   drive_left.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+   drive_right.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 }
 
 /**
@@ -91,6 +97,11 @@ void opcontrol() {
       if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)) {
          autonomous();
       }
+
+      if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
+         isReversed = !isReversed;
+      }
+
       if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)) {
          std::string name = subsystem.drivetrain.toggleDrive();
          // Output the current drive mode to the controller screen
@@ -106,6 +117,6 @@ void opcontrol() {
       // Intake controller, moves the left and right intakes and stops them if
       // nothing is pressed.
 
-      pros::delay(10); // Small delay to reduce CPU usage
+      pros::delay(30); //15ms for matches
    }
 }

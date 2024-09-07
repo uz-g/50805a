@@ -15,21 +15,21 @@ namespace Robot {
 namespace Globals {
 
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
-pros::Motor RightFront(6, pros::v5::MotorGears::blue,
+pros::Motor RightFront(15, pros::v5::MotorGears::blue,
                        pros::v5::MotorUnits::degrees);
-pros::Motor LeftFront(-5, pros::v5::MotorGears::blue,
+pros::Motor LeftFront(18, pros::v5::MotorGears::blue,
                       pros::v5::MotorUnits::degrees);
-pros::Motor LeftBack(-7, pros::v5::MotorGears::blue,
+pros::Motor LeftBack(-19, pros::v5::MotorGears::blue,
                      pros::v5::MotorUnits::degrees);
-pros::Motor RightBack(8, pros::v5::MotorGears::blue,
+pros::Motor RightBack(16, pros::v5::MotorGears::blue,
                       pros::v5::MotorUnits::degrees);
-pros::Motor LeftMid(2, pros::v5::MotorGears::blue,
+pros::Motor LeftMid(-20, pros::v5::MotorGears::blue,
                     pros::v5::MotorUnits::degrees);
-pros::Motor RightMid(-3, pros::v5::MotorGears::blue,
+pros::Motor RightMid(-17, pros::v5::MotorGears::blue,
                      pros::v5::MotorUnits::degrees);
-pros::Motor IntakeMotor(-9, pros::v5::MotorGears::green,
+pros::Motor IntakeMotor(2, pros::v5::MotorGears::green,
                         pros::v5::MotorUnits::degrees);
-pros::Motor TopIntakeMotor(10, pros::v5::MotorGears::blue,
+pros::Motor TopIntakeMotor(1, pros::v5::MotorGears::blue,
                            pros::v5::MotorUnits::degrees);
 
 pros::adi::DigitalIn drivetrainToggleSwitch('G');
@@ -37,7 +37,7 @@ pros::adi::DigitalIn autonToggleSwitch('F');
 
 pros::Optical colorSensor(4);  // placeholder port number
 
-pros::adi::Pneumatics LatchControl('A', false);
+pros::adi::Pneumatics LatchControl('H', false);
 pros::adi::Pneumatics IntakeToggle('B', false);
 
 pros::Imu inertial_sensor(15);
@@ -46,9 +46,8 @@ pros::MotorGroup drive_left({LeftFront.get_port(), LeftMid.get_port(),
                              LeftBack.get_port()});
 pros::MotorGroup drive_right({RightFront.get_port(), RightMid.get_port(),
                               RightBack.get_port()});
-pros::MotorGroup drive_({LeftFront.get_port(), RightFront.get_port(),
-                         LeftMid.get_port(), RightMid.get_port(),
-                         LeftBack.get_port(), RightBack.get_port()});
+
+
 
 // Describes the lemlib objects that are used to control the autonomous
 // functions of the robot.
@@ -110,6 +109,8 @@ lemlib::ExpoDriveCurve steer_curve(
 
 lemlib::Chassis chassis(drivetrain, lateral_controller, angular_controller,
                         sensors, &throttle_curve, &steer_curve);
+
+bool isReversed = false;
 
 }  // namespace Globals
 

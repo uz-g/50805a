@@ -82,5 +82,7 @@ extern pros::adi::DigitalIn autonToggleSwitch;
 extern pros::adi::Pneumatics LatchControl;
 extern pros::adi::Pneumatics IntakeToggle;
 
+extern bool isReversed;
+
 }  // namespace Globals
 }  // namespace Robot

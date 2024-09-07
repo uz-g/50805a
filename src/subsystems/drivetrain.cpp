@@ -5,11 +5,11 @@
 using namespace Robot;
 using namespace Robot::Globals;
 
-Drivetrain::DRIVE_MODE Drivetrain::driveMode = CURVATURE_DRIVE;
+Drivetrain::DRIVE_MODE Drivetrain::driveMode = TANK_DRIVE;
 
 Drivetrain::Drivetrain()
 {
-	Drivetrain::driveMode = CURVATURE_DRIVE;
+	Drivetrain::driveMode = TANK_DRIVE;
 }
 
 void Drivetrain::CurvatureDrive()
@@ -38,6 +38,13 @@ void Drivetrain::TankDrive()
 	int left  = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
 	int right = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
 
+	if(isReversed)
+	{
+		left *= -1;
+		right *= -1;
+		std::swap(left, right);
+	}
+	
 	chassis.tank(left, right);
 
 	pros::delay(15);
