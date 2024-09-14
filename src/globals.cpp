@@ -19,7 +19,7 @@ pros::Motor RightFront(15, pros::v5::MotorGears::blue,
                        pros::v5::MotorUnits::degrees);
 pros::Motor LeftFront(18, pros::v5::MotorGears::blue,
                       pros::v5::MotorUnits::degrees);
-pros::Motor LeftBack(-19, pros::v5::MotorGears::blue,
+pros::Motor LeftBack(-13, pros::v5::MotorGears::blue,
                      pros::v5::MotorUnits::degrees);
 pros::Motor RightBack(16, pros::v5::MotorGears::blue,
                       pros::v5::MotorUnits::degrees);

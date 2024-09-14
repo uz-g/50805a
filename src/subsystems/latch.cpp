@@ -6,7 +6,7 @@ using namespace Robot;
 using namespace Robot::Globals;
 
 void Latch::run() {
-  if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B)) {
+  if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_R1)) {
     Latch::toggle();
   }
 }

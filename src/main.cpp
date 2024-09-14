@@ -94,19 +94,19 @@ void autonomous() { subsystem.autonomous.AutoDrive(subsystem.intake, subsystem.l
  */
 void opcontrol() {
    while (true) {
-      if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)) {
-         autonomous();
-      }
+      // if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)) {
+      //    autonomous();
+      // }
 
       if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
          isReversed = !isReversed;
       }
 
-      if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)) {
-         std::string name = subsystem.drivetrain.toggleDrive();
-         // Output the current drive mode to the controller screen
-         controller.print(0, 0, name.c_str());
-      }
+      // if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)) {
+      //    std::string name = subsystem.drivetrain.toggleDrive();
+      //    // Output the current drive mode to the controller screen
+      //    controller.print(0, 0, name.c_str());
+      // }
 
       subsystem.drivetrain.run();
       subsystem.latch.run();
@@ -117,6 +117,6 @@ void opcontrol() {
       // Intake controller, moves the left and right intakes and stops them if
       // nothing is pressed.
 
-      pros::delay(30); //15ms for matches
+      pros::delay(15);
    }
 }
