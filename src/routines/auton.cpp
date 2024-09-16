@@ -76,33 +76,49 @@ void Autonomous::Auton2(Intake &intake, Latch &latch)
 	chassis.follow(red_left_pt5_txt, 15, 5000);
 }
 
-// Blue left
+// AWP (stealing cetner mogo)
 void Autonomous::Auton3(Intake &intake, Latch &latch)
 {
+	chassis.setPose(-60, -150, 0);
+	
+	//we are now at the mogo
+	chassis.moveToPoint(0, -120, 2000);
+
+	//pick up the mogo
+	latch.toggle();
+
+	//go pick up ring
+	chassis.moveToPoint(-60, -120, 2000);
+	intake.score();
+
+	//pick up another ring
+	chassis.moveToPoint(-120, -120, 2000);
+	intake.score();
+
+	//touch bar for WP
+	chassis.moveToPoint(0, -60, 2000);
 }
 
-/*
- * @todo Flesh out this method before the competition in order to make it a full
- * solo awp autonomous. Blue right
- */
+// AWP (not stealing cetner mogo)
 void Autonomous::Auton4(Intake &intake, Latch &latch)
 {
-	chassis.setBrakeMode(pros::E_MOTOR_BRAKE_BRAKE);
+	chassis.setPose(-60, -150, 0);
 
-	chassis.setPose(0, 0, 0);
-	// move 48" forwards
-	chassis.moveToPoint(0, 72, 3500, { .maxSpeed = 110 }, true);
-	chassis.turnToHeading(180, 1000, { .maxSpeed = 90 }, false);
+	chassis.moveToPoint(-60, -60, 2000);
+	latch.toggle();
 
-	chassis.setPose(0, 0, 0);
-	chassis.moveToPoint(0, 24, 1000, { .maxSpeed = 110 });
-	chassis.turnToHeading(0, 1200, { .maxSpeed = 110 }, false);
+	//go pick up ring
+	chassis.moveToPoint(-60, -120, 2000);
+	intake.score();
+
+	//pick up another ring
+	chassis.moveToPoint(-120, -120, 2000);
+	intake.score();
+
+	//touch bar for WP
+	chassis.moveToPoint(0, -60, 2000);
 }
 
-void Autonomous::Auton5(Intake &intake, Latch &latch)
-{
-	// Autonomous routine for the Skills challenge
-}
 
 // Takes in two parameters: The autonomous value as well as the puncher object.
 void Autonomous::AutoDrive(Intake &intake, Latch &latch)

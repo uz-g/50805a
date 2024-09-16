@@ -92,17 +92,32 @@ void autonomous() { subsystem.autonomous.AutoDrive(subsystem.intake, subsystem.l
  * operator control task will be stopped. Re-enabling the robot will restart
  * the task, not resume it from where it left off.
  */
-void opcontrol() {
-   while (true) {
-      if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)) {
+
+int timeRan = 0;
+bool flagged = false;
+
+void opcontrol() 
+{
+   while (true) 
+   {
+      if(timeRan >= 75000 && !flagged)
+      {
+         controller.rumble("- - -");
+         flagged = true;
+      }
+
+      if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)) 
+      {
          autonomous();
       }
 
-      if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
+      if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) 
+      {
          isReversed = !isReversed;
       }
 
-      if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)) {
+      if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)) 
+      {
          std::string name = subsystem.drivetrain.toggleDrive();
          // Output the current drive mode to the controller screen
          controller.print(0, 0, name.c_str());
@@ -110,13 +125,13 @@ void opcontrol() {
 
       subsystem.drivetrain.run();
       subsystem.latch.run();
-
-      // Intake controller, uses the X button holded down to push the elevation
-      // up.
+      // Intake controller, uses the X button holded down to push the 
+      
       subsystem.intake.run();
       // Intake controller, moves the left and right intakes and stops them if
       // nothing is pressed.
 
       pros::delay(30); //15ms for matches
+      timeRan += 30;
    }
 }
