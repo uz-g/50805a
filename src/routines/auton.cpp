@@ -134,8 +134,6 @@ void Autonomous::AutoDrive(Intake &intake, Latch &latch)
 		Auton3(intake, latch);
 	case BLUE_RIGHT:
 		Auton4(intake, latch);
-	case SKILLS:
-		Auton5(intake, latch);
 	}
 }
 

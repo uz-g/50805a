@@ -102,13 +102,8 @@ void opcontrol()
    {
       if(timeRan >= 75000 && !flagged)
       {
-         controller.rumble("- - -");
+         controller.rumble(". - . -");
          flagged = true;
-      }
-
-      if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)) 
-      {
-         autonomous();
       }
 
       if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) 
@@ -116,11 +111,16 @@ void opcontrol()
          isReversed = !isReversed;
       }
 
-      // if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT)) {
-      //    std::string name = subsystem.drivetrain.toggleDrive();
-      //    // Output the current drive mode to the controller screen
-      //    controller.print(0, 0, name.c_str());
-      // }
+      if(isReversed) controller.print(0, 0, "REVERSED MODE");
+      else controller.print(0, 0, "NORMAL MODE");
+      
+      //prints the time left in the match in the format MM:SS
+      int seconds = timeRan / 1000;
+      int elapsed = 105-seconds;
+      int min = elapsed / 60;
+      elapsed %= 60;
+      controller.print(0, 0, "%d:%d left", min, elapsed);
+
 
       subsystem.drivetrain.run();
       subsystem.latch.run();
@@ -131,6 +131,6 @@ void opcontrol()
       // nothing is pressed.
 
       pros::delay(15); //15ms for matches
-      timeRan += 30;
+      timeRan += 15;
    }
 }
