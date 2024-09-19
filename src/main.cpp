@@ -111,16 +111,10 @@ void opcontrol()
          isReversed = !isReversed;
       }
 
-      if(isReversed) controller.print(0, 0, "REVERSED MODE");
-      else controller.print(0, 0, "NORMAL MODE");
+      if(isReversed) controller.print(0, 0, "REVERSED MODE    ");
+      else controller.print(0, 0, "NORMAL MODE    ");
       
       //prints the time left in the match in the format MM:SS
-      int seconds = timeRan / 1000;
-      int elapsed = 105-seconds;
-      int min = elapsed / 60;
-      elapsed %= 60;
-      controller.print(0, 0, "%d:%d left", min, elapsed);
-
 
       subsystem.drivetrain.run();
       subsystem.latch.run();
