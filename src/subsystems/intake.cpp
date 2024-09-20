@@ -14,7 +14,10 @@ Intake::Intake() {
 }
 
 void Intake::run() {
-   if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
+   if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_X)) {
+      TopIntakeMotor.move_velocity(-600);
+   }
+   else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
       IntakeMotor.move_velocity(-200);
       TopIntakeMotor.move_velocity(420);
    } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
