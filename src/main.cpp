@@ -96,6 +96,8 @@ void autonomous() { subsystem.autonomous.AutoDrive(subsystem.intake, subsystem.l
 
 void opcontrol() 
 {
+   pros::lcd::initialize();
+   
    auto start_time = std::chrono::steady_clock::now();
    bool flagged = false;
 
@@ -130,5 +132,16 @@ void opcontrol()
       // nothing is pressed.
 
       pros::delay(15); //15ms for matches
+      
+      pros::lcd::clear();
+      
+      // Print temperatures for motors 1-6 (adjust range as needed)
+      for (int i = 1; i <= 6; i++) {
+         pros::Motor motor(i);
+         double temp = motor.get_temperature();
+         pros::lcd::print(i, "Motor %d: %.2f°C", i, temp);
+      }
+      
+      pros::delay(100); // Update every 100ms
    }
 }
