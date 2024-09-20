@@ -93,14 +93,19 @@ void autonomous() { subsystem.autonomous.AutoDrive(subsystem.intake, subsystem.l
  * the task, not resume it from where it left off.
  */
 
-int timeRan = 0;
-bool flagged = false;
 
 void opcontrol() 
 {
+   auto start_time = std::chrono::steady_clock::now();
+   bool flagged = false;
+
    while (true) 
    {
-      if(timeRan >= 75000 && !flagged)
+      
+      auto current_time = std::chrono::steady_clock::now();
+      auto elapsed_time = std::chrono::duration_cast<std::chrono::seconds>(current_time - start_time).count();
+      
+      if(elapsed_time >= 72 && !flagged)
       {
          controller.rumble(". - . -");
          flagged = true;
@@ -125,6 +130,5 @@ void opcontrol()
       // nothing is pressed.
 
       pros::delay(15); //15ms for matches
-      timeRan += 15;
    }
 }
