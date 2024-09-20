@@ -130,6 +130,6 @@ void opcontrol()
       // Intake controller, moves the left and right intakes and stops them if
       // nothing is pressed.
 
-      pros::delay(15); //15ms for matches
+      pros::delay(20);
    }
 }
