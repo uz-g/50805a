@@ -95,7 +95,7 @@ lemlib::ControllerSettings angular_controller{
 };
 
 lemlib::ExpoDriveCurve throttle_curve(
-    30,     // joystick deadband out of 127
+    5,     // joystick deadband out of 127
     10,    // minimum output where drivetrain will move out of 127
     1.011  // expo curve gain
 );

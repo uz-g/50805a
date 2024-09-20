@@ -443,7 +443,7 @@
       "after": "none",
       "description": "High Stakes",
       "icon": "X",
-      "slot": 2
+      "slot": 1
     },
     "use_early_access": false
   }
