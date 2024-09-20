@@ -98,6 +98,8 @@ bool flagged = false;
 
 void opcontrol() 
 {
+   pros::lcd::initialize();
+   
    while (true) 
    {
       if(timeRan >= 75000 && !flagged)
@@ -126,5 +128,16 @@ void opcontrol()
 
       pros::delay(15); //15ms for matches
       timeRan += 15;
+      
+      pros::lcd::clear();
+      
+      // Print temperatures for motors 1-6 (adjust range as needed)
+      for (int i = 1; i <= 6; i++) {
+         pros::Motor motor(i);
+         double temp = motor.get_temperature();
+         pros::lcd::print(i, "Motor %d: %.2f°C", i, temp);
+      }
+      
+      pros::delay(100); // Update every 100ms
    }
 }
