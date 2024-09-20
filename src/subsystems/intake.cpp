@@ -35,7 +35,8 @@ void Intake::toggle() {
 }
 
 void Intake::score() {
-	IntakeMotor.move(127);
+	IntakeMotor.move_velocity(-200);
+   TopIntakeMotor.move_velocity(-600);
 	pros::delay(1500);
 	IntakeMotor.brake();
 }
