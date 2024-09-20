@@ -29,7 +29,7 @@ pros::Motor RightMid(-17, pros::v5::MotorGears::blue,
                      pros::v5::MotorUnits::degrees);
 pros::Motor IntakeMotor(2, pros::v5::MotorGears::green,
                         pros::v5::MotorUnits::degrees);
-pros::Motor TopIntakeMotor(1, pros::v5::MotorGears::green,
+pros::Motor TopIntakeMotor(1, pros::v5::MotorGears::blue,
                            pros::v5::MotorUnits::degrees);
 
 pros::adi::DigitalIn drivetrainToggleSwitch('G');
