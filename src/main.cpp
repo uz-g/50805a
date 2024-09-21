@@ -77,7 +77,18 @@ void competition_initialize() {}
  * will be stopped. Re-enabling the robot will restart the task, not re-start
  * it from where it left off.
  */
-void autonomous() { subsystem.autonomous.AutoDrive(subsystem.intake, subsystem.latch); }
+void autonomous() { 
+   // subsystem.autonomous.AutoDrive(subsystem.intake, subsystem.latch); 
+   // chassis.setPose(-150, 60, 0);
+	
+	// //drop intake
+	// // chassis.moveToPoint(-120, 60, 500);
+
+	// drive_left.move_relative(1000, 600);
+	// drive_right.move_relative(-1000, 600);
+	// TopIntakeMotor.move_relative(560, 350); 
+
+   }
 
 /**
  * Runs the operator control code. This function will be started in its own

@@ -40,7 +40,7 @@ pros::Optical colorSensor(4);  // placeholder port number
 pros::adi::Pneumatics LatchControl('H', false);
 pros::adi::Pneumatics IntakeToggle('B', false);
 
-pros::Imu inertial_sensor(15);
+pros::Imu inertial_sensor(12);
 
 pros::MotorGroup drive_left({LeftFront.get_port(), LeftMid.get_port(),
                              LeftBack.get_port()});
@@ -56,7 +56,7 @@ lemlib::Drivetrain drivetrain{
     &drive_right,  // right drivetrain motors
     12.125,        // track width
     lemlib::Omniwheel::OLD_325,
-    480,  // drivetrain rpm is 450
+    480,  // drivetrain rpm 
     2     // horizontal drift is 2
 };
 
