@@ -77,7 +77,13 @@ void competition_initialize() {}
  * will be stopped. Re-enabling the robot will restart the task, not re-start
  * it from where it left off.
  */
-void autonomous() { subsystem.autonomous.AutoDrive(subsystem.intake, subsystem.latch); }
+void autonomous() { 
+   //subsystem.autonomous.AutoDrive(subsystem.intake, subsystem.latch); 
+   //Drive forward towards center goal and pick it up
+   
+   chassis.setPose(0, 0, 0);
+   chassis.turnToHeading(90.0f, 100000);
+}
 
 /**
  * Runs the operator control code. This function will be started in its own
@@ -102,7 +108,6 @@ void opcontrol()
 
    while (true) 
    {
-      
       auto current_time = std::chrono::steady_clock::now();
       auto elapsed_time = std::chrono::duration_cast<std::chrono::seconds>(current_time - start_time).count();
       

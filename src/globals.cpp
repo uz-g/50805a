@@ -83,14 +83,14 @@ lemlib::ControllerSettings lateral_controller{
 
 // turning PID
 lemlib::ControllerSettings angular_controller{
-    4.04,  // kP
+    2,  // kP
     0,     // kI
-    24.5,  // kD
-    3,     // Anti Windup
-    1,     // smallErrorRange
-    100,   // smallErrorTimeout
-    3,     // largeErrorRange
-    500,   // largeErrorTimeout
+    2,  // kD
+    0,     // Anti Windup
+    0,     // smallErrorRange
+    0,   // smallErrorTimeout
+    0,     // largeErrorRange
+    0,   // largeErrorTimeout
     0      // slew rate
 };
 
