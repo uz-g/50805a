@@ -19,7 +19,7 @@ public:
 	/**
 	 * @brief Outakes alliance rings into latched mobile goal and ejects enemy rings.
 	 */
-	void score();
+	void score(int delay, int direction);
 
 	Intake();
 

@@ -3,6 +3,10 @@
 #include "globals.h"
 #include "pros/apix.h"
 #include "pros/motors.h"
+#include "pros/screen.h"
+#include "robot/auton.h"
+#include "robot/intake.h"
+#include "robot/latch.h"
 
 using namespace Robot;
 using namespace Robot::Globals;
@@ -36,15 +40,12 @@ struct RobotScreen {
 
 void initialize() {
    //IMU Plugged in at port number 15
-   if (pros::c::registry_get_plugged_type(15) == pros::c::E_DEVICE_IMU) {
-      chassis.calibrate();
-   }
-   chassis.setPose(0, 0, 0);
+   chassis.calibrate();
+
+   drive_left.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+   drive_right.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
    screen.selector.selector();
-
-   drive_left.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-   drive_right.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 }
 
 /**
@@ -77,18 +78,9 @@ void competition_initialize() {}
  * will be stopped. Re-enabling the robot will restart the task, not re-start
  * it from where it left off.
  */
-void autonomous() { 
-   // subsystem.autonomous.AutoDrive(subsystem.intake, subsystem.latch); 
-   // chassis.setPose(-150, 60, 0);
-	
-	// //drop intake
-	chassis.moveToPoint(-120, 60, 500);
-
-	drive_left.move_relative(1000, 600);
-	drive_right.move_relative(1000, 600);
-	// TopIntakeMotor.move_relative(560, 350); 
-
-   }
+void autonomous() {
+   subsystem.autonomous.AutoDrive(subsystem.intake, subsystem.latch);
+}
 
 /**
  * Runs the operator control code. This function will be started in its own
@@ -116,21 +108,11 @@ void opcontrol()
       auto current_time = std::chrono::steady_clock::now();
       auto elapsed_time = std::chrono::duration_cast<std::chrono::seconds>(current_time - start_time).count();
       
-      if(elapsed_time >= 72 && !flagged)
+      if(elapsed_time >= 85 && !flagged)
       {
          controller.rumble(". - . -");
          flagged = true;
       }
-
-      if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) 
-      {
-         isReversed = !isReversed;
-      }
-
-      if(isReversed) controller.print(0, 0, "REVERSED MODE    ");
-      else controller.print(0, 0, "NORMAL MODE    ");
-      
-      //prints the time left in the match in the format MM:SS
 
       subsystem.drivetrain.run();
       subsystem.latch.run();

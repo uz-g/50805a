@@ -37,31 +37,17 @@ void Drivetrain::TankDrive()
 {
 	int left  = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
 	int right = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
-
-	if(isReversed)
-	{
-		left *= -1;
-		right *= -1;
-		std::swap(left, right);
-	}
 	
-	chassis.tank(left, right);
-
-	pros::delay(15);
+	chassis.tank(left, right, true);
+	//print to the controller the left and right values
+	controller.print(0, 0, "L: %d R: %d       ", left, right);
 }
 
 
 // Run the drivetrain depending on the control mode
 void Drivetrain::run()
 {
-	switch (Drivetrain::driveMode) {
-	case CURVATURE_DRIVE:
-		Drivetrain::CurvatureDrive();
-	case ARCADE_DRIVE:
-		Drivetrain::ArcadeDrive();
-	case TANK_DRIVE:
-		Drivetrain::TankDrive();
-	}
+	Drivetrain::TankDrive();
 }
 
 // Cycle through each drivetrain control mode, overflows back to 0
