@@ -82,10 +82,10 @@ void autonomous() {
    // chassis.setPose(-150, 60, 0);
 	
 	// //drop intake
-	// // chassis.moveToPoint(-120, 60, 500);
+	chassis.moveToPoint(-120, 60, 500);
 
-	// drive_left.move_relative(1000, 600);
-	// drive_right.move_relative(-1000, 600);
+	drive_left.move_relative(1000, 600);
+	drive_right.move_relative(1000, 600);
 	// TopIntakeMotor.move_relative(560, 350); 
 
    }
