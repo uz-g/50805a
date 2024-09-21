@@ -78,12 +78,17 @@ void competition_initialize() {}
  * it from where it left off.
  */
 void autonomous() { 
-   //subsystem.autonomous.AutoDrive(subsystem.intake, subsystem.latch); 
-   //Drive forward towards center goal and pick it up
-   
-   chassis.setPose(0, 0, 0);
-   chassis.turnToHeading(90.0f, 100000);
-}
+   // subsystem.autonomous.AutoDrive(subsystem.intake, subsystem.latch); 
+   // chassis.setPose(-150, 60, 0);
+	
+	// //drop intake
+	chassis.moveToPoint(-120, 60, 500);
+
+	drive_left.move_relative(1000, 600);
+	drive_right.move_relative(1000, 600);
+	// TopIntakeMotor.move_relative(560, 350); 
+
+   }
 
 /**
  * Runs the operator control code. This function will be started in its own
