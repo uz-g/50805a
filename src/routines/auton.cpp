@@ -70,7 +70,7 @@ void Autonomous::Auton3(Intake &intake, Latch &latch)
    //turn and pick up rings
    chassis.moveToPose(-60, 120, 90, 5000);
    intake.score(5000, 1);
-   
+
    //pick up rings from center 
    chassis.moveToPose(0, -130, 0, 5000);
    intake.score(5000, 1);
@@ -183,10 +183,50 @@ void Autonomous::Auton5(Intake &intake, Latch &latch)
    // Step 6. We will pick up the bottom right’s mobile goal to score more rings onto.
 
    chassis.moveToPose(-120, 60, 45, 5000, {.forwards=false}, false);
+
    latch.toggle();
 
    // Step 7. We will pick up all of the rings in the bottom right corner. 
    // This will required high precision and a well-tuned autonomous to accomplish quickly.
+
+   // -- Pick up the top right ring (2)
+
+   intake.on(600);
+
+   chassis.moveToPose(-60, -60, 135, 5000, {.forwards=true}, false);
+   pros::delay(200);
+
+   // -- Pick up the bottom right ring (3)
+
+   chassis.moveToPose(-60, -120, 180, 5000, {.forwards=true}, false);
+   pros::delay(200);
+
+   // -- Pick up the middle ring (4)
+   chassis.moveToPose(-120, -120, 270, 5000, {.forwards=true}, false);
+   pros::delay(200);
+
+   // -- Pick up a ring (5)
+   chassis.moveToPose(-150, -120, 270, 5000, {.forwards=true}, false);
+   pros::delay(200);
+
+   // -- Pick up last ring (6)
+   chassis.moveToPose(-120, -150, 135, 5000, {.forwards=true}, false);
+   pros::delay(200);
+
+   // Step 8. We will put the mobile goal into the positive corner at the bottom right. 
+   // This will double all of the points on our current mobile goal.
+
+   chassis.moveToPose(-166, -166, 45, 5000, {.forwards=false}, false);
+   intake.off();
+
+   // Step 9. Move to the center line, and pick up a ring, then turn around and score it on the high stakes.
+
+   chassis.moveToPose(0, -150, 90, 5000, {.forwards=true}, false);
+   //TODO: SCORE RING ON HIGH STAKE
+
+   //Step 10. We will go to the center bar and hang
+   chassis.moveToPose(-25, -40, 45, 5000, {.forwards=true}, false);
+   //TODO: TOGGLE HANG MECHANISM
 }
 
 
