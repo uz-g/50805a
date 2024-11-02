@@ -21,6 +21,9 @@ public:
 	 */
 	void score(int delay, int direction);
 
+	void on(int speed);
+	void off();
+
 	Intake();
 
 	/**

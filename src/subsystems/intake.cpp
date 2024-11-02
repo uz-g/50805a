@@ -34,6 +34,12 @@ void Intake::toggle() {
    IntakeToggle.toggle();
 }
 
+/**
+ * @brief Runs the intake scoring sequence
+ *
+ * @param delay Time in milliseconds to delay after the intake is finished running
+ * @param direction Direction of the intake, should be either 1 (into) or -1 (backward)
+ */
 void Intake::score(int delay, int direction) {  
    direction *= -1;
 	IntakeMotor.move_velocity(direction * 200);
@@ -41,4 +47,22 @@ void Intake::score(int delay, int direction) {
 	pros::delay(delay);
 	IntakeMotor.brake();
    TopIntakeMotor.brake();
+}
+
+void Intake::on(int speed)
+{
+   if(speed == 0)
+   {
+      IntakeMotor.brake();
+      TopIntakeMotor.brake();
+      return;
+   }
+
+   IntakeMotor.move_velocity(speed);
+   TopIntakeMotor.move_velocity(speed);
+}
+
+void Intake::off()
+{
+   on(0);
 }
