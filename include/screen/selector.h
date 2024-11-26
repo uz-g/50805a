@@ -1,4 +1,6 @@
 #pragma once
+#include "lemlib/pose.hpp"
+#include "liblvgl/core/lv_obj.h"
 #include "pros/apix.h" // IWYU pragma: export
 #include "robot/auton.h"
 
@@ -28,7 +30,12 @@ public:
 	 */
 	void selector();
 
+	static lv_obj_t *tab3;
+	static void gps_update(lemlib::Pose curPose, lemlib::Pose goalPose);
+
 private:
+
+
 	/**
 	 * @brief Value of the last selected competition autonomous when switching to
 	 * a skills autonomous.

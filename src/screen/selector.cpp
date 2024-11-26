@@ -1,5 +1,9 @@
 #include "screen/selector.h"
 
+#include "liblvgl/core/lv_event.h"
+#include "liblvgl/core/lv_obj.h"
+#include "liblvgl/core/lv_obj_pos.h"
+#include "liblvgl/misc/lv_area.h"
 #include "main.h" // IWYU pragma: export
 #include "robot/auton.h"
 
@@ -101,6 +105,35 @@ void selector_screen::drive_update(lv_event_t *e)
 	lv_label_set_text_fmt(driveLabel, "Current drive mode: %s", driveMode.c_str());
 }
 
+LV_IMG_DECLARE(vexgrid);
+LV_IMG_DECLARE(robot);
+
+void selector_screen::gps_update(lemlib::Pose curPose, lemlib::Pose goalPose)
+{
+
+}
+
+void get_screen_from_grid(int &x_in, int &y_in)
+{
+	x_in += 180, y_in += 180;
+	x_in *= 200, y_in *= 200;
+	x_in /= 360, y_in /= 360;
+
+	x_in += 260;
+}
+
+void get_grid_from_screen(int &x_in, int &y_in)
+{
+	x_in -= 260;
+	x_in *= 360;
+	x_in /= 200;
+
+	y_in *= 360;
+	y_in /= 200;
+
+	x_in -= 180, y_in -= 180;
+}
+
 /**
  * @brief Function to create and initialize the selector screen.
  *
@@ -110,15 +143,31 @@ void selector_screen::drive_update(lv_event_t *e)
  * for selecting alliance color, skills, and autonomous mode. It also creates a
  * label and a roller for selecting the current drive mode.
  */
+
 void selector_screen::selector()
 {
-	/*Create a Tab view object*/
 	lv_obj_t *tabview;
 	tabview = lv_tabview_create(lv_scr_act(), LV_DIR_TOP, 35);
 
 	/*Add 2 tabs*/
-	lv_obj_t *tab1 = lv_tabview_add_tab(tabview, "Autonomous select");
-	lv_obj_t *tab2 = lv_tabview_add_tab(tabview, "Drive select");
+	lv_obj_t *tab1 = lv_tabview_add_tab(tabview, "Autonomous");
+	lv_obj_t *tab2 = lv_tabview_add_tab(tabview, "Drive Mode");
+	lv_obj_t *tab3 = lv_tabview_add_tab(tabview, "GPS");
+	
+	lv_obj_t *icon = lv_img_create(tab3);
+
+	lv_img_set_src(icon, &vexgrid);
+	lv_obj_set_size(icon, 200, 200);
+	lv_obj_align(icon, LV_ALIGN_TOP_LEFT, 260 , -10);
+
+	lv_obj_t *positionLabel = lv_label_create(tab3);
+	lv_label_set_text_fmt(positionLabel, "position: {%d, %d}", 2, 1);
+	lv_obj_set_style_text_font(positionLabel, &lv_font_montserrat_20, 0);
+
+	lv_obj_t *headingLabel = lv_label_create(tab3);
+	lv_label_set_text_fmt(headingLabel, "heading: %d°", 69);
+	lv_obj_align(headingLabel, LV_ALIGN_TOP_LEFT, 0, 35);
+	lv_obj_set_style_text_font(headingLabel, &lv_font_montserrat_20, 0);
 
 	/*
 	 * Both switches are "bubbled" to the tab view. This means that any event on
