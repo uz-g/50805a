@@ -28,6 +28,8 @@ public:
 	 */
 	void selector();
 
+	void map();
+
 private:
 	/**
 	 * @brief Value of the last selected competition autonomous when switching to
