@@ -16,7 +16,7 @@ namespace Globals {
 
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
-pros::MotorGroup intake({2, 3}, pros::v5::MotorGears::green, pros::v5::MotorUnits::degrees);
+pros::MotorGroup intake({4, 10}, pros::v5::MotorGears::blue, pros::v5::MotorUnits::degrees);
 
 pros::adi::DigitalIn drivetrainToggleSwitch('G');
 pros::adi::DigitalIn autonToggleSwitch('F');
@@ -24,10 +24,10 @@ pros::adi::DigitalIn autonToggleSwitch('F');
 pros::adi::Pneumatics LatchControl('H', false);
 pros::adi::Pneumatics IntakeToggle('B', false);
 
-pros::Imu inertial_sensor(12);
+pros::Imu inertial_sensor(2);
 
-pros::MotorGroup drive_right({16, -17, 15}, pros::v5::MotorGears::blue, pros::v5::MotorUnits::degrees);
-pros::MotorGroup drive_left({-13, 18 , -11}, pros::v5::MotorGears::blue, pros::v5::MotorUnits::degrees);
+pros::MotorGroup drive_right({20, -7, 18}, pros::v5::MotorGears::blue, pros::v5::MotorUnits::degrees);
+pros::MotorGroup drive_left({-3, -5, 6}, pros::v5::MotorGears::blue, pros::v5::MotorUnits::degrees);
 
 // Describes the lemlib objects that are used to control the autonomous
 // functions of the robot.
@@ -41,9 +41,9 @@ lemlib::Drivetrain drivetrain{
 };
 
 lemlib::OdomSensors sensors{
-    nullptr,         // vertical tracking wheel 1
-    nullptr,         // vertical tracking wheel 2
-    nullptr,         // horizontal tracking wheel 1
+    nullptr,         // vertical tracking wheel 1 - null
+    nullptr,         // vertical tracking wheel 2 - null
+    nullptr,         // horizontal tracking wheel 1 - null
     nullptr,         // we don't have a second tracking wheel, so we set it to nullptr
     &inertial_sensor // inertial sensor
 };
