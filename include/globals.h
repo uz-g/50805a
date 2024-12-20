@@ -43,8 +43,7 @@ extern pros::Motor RightBack;
 extern pros::Motor LeftMid;
 
 extern pros::Motor RightMid;
-extern pros::Motor IntakeMotor;
-extern pros::Motor TopIntakeMotor;
+extern pros::MotorGroup intake;
 
 
 extern pros::MotorGroup punchers;

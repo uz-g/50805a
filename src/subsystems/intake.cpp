@@ -14,18 +14,12 @@ Intake::Intake() {
 }
 
 void Intake::run() {
-   if(controller.get_digital(pros::E_CONTROLLER_DIGITAL_X)) {
-      TopIntakeMotor.move_velocity(-600);
-   }
-   else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
-      IntakeMotor.move_velocity(-200);
-      TopIntakeMotor.move_velocity(420);
+   if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
+      intake.move_velocity(200);
    } else if (controller.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
-      IntakeMotor.move_velocity(200);
-      TopIntakeMotor.move_velocity(-420);
+      intake.move_velocity(-200);
    } else{
-	IntakeMotor.brake();
-	TopIntakeMotor.brake();
+      intake.brake();
    }
 }
 
@@ -42,24 +36,19 @@ void Intake::toggle() {
  */
 void Intake::score(int delay, int direction) {  
    direction *= -1;
-	IntakeMotor.move_velocity(direction * 200);
-   TopIntakeMotor.move_velocity(direction * 600);
+   intake.move_velocity(200);
 	pros::delay(delay);
-	IntakeMotor.brake();
-   TopIntakeMotor.brake();
+	intake.brake();
 }
 
 void Intake::on(int speed)
 {
    if(speed == 0)
    {
-      IntakeMotor.brake();
-      TopIntakeMotor.brake();
+	   intake.brake();
       return;
    }
-
-   IntakeMotor.move_velocity(speed);
-   TopIntakeMotor.move_velocity(speed);
+   intake.move_velocity(200);
 }
 
 void Intake::off()

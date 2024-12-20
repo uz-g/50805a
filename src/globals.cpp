@@ -16,8 +16,7 @@ namespace Globals {
 
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
-pros::Motor IntakeMotor(2, pros::v5::MotorGears::green, pros::v5::MotorUnits::degrees);
-pros::Motor TopIntakeMotor(3, pros::v5::MotorGears::blue, pros::v5::MotorUnits::degrees);
+pros::MotorGroup intake({2, 3}, pros::v5::MotorGears::green, pros::v5::MotorUnits::degrees);
 
 pros::adi::DigitalIn drivetrainToggleSwitch('G');
 pros::adi::DigitalIn autonToggleSwitch('F');

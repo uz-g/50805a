@@ -97,6 +97,8 @@ void autonomous() {
 
 void opcontrol() 
 {
+   subsystem.intake.run();
+   return;
    
    auto start_time = std::chrono::steady_clock::now();
    bool flagged = false;

@@ -108,10 +108,10 @@ void selector_screen::drive_update(lv_event_t *e)
 LV_IMG_DECLARE(vexgrid);
 LV_IMG_DECLARE(robot);
 
-void selector_screen::gps_update(lemlib::Pose curPose, lemlib::Pose goalPose)
-{
+//void selector_screen::gps_update(lemlib::Pose curPose, lemlib::Pose goalPose)
+//{
 
-}
+//}
 
 void get_screen_from_grid(int &x_in, int &y_in)
 {
