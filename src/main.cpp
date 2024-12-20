@@ -1,9 +1,7 @@
 #include "main.h"
 
 #include "globals.h"
-#include "pros/apix.h"
 #include "pros/motors.h"
-#include "pros/screen.h"
 #include "robot/auton.h"
 #include "robot/intake.h"
 #include "robot/latch.h"
