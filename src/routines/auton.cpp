@@ -12,48 +12,64 @@ std::string				  Autonomous::autonName;
 
 void Autonomous::Auton1(Intake &intake, Latch &latch)
 {
-   //Autonomous A: Mobile Goal Steal Blue
-   chassis.setPose(-60, -36, 90);
+   //Autonomous winpoint blue positive side / red negative side
 
-   //Move to an angle to steal mogo and create clearance
-   chassis.moveToPose(-12, -36, 90, 3000);
+   //score on alliance stake
 
-   //Move the intake up to release the stage 1 
-   intake.score(700, -1);
+   chassis.setPose(-60, -12, 0);
+   chassis.moveToPose(-60, 0, 0, 5000);
+   chassis.turnToHeading(90, 1000);
+   chassis.moveToPoint(-65, 0, 1000, {.forwards=false});
+   intake.score(2000, 1);
 
-   //Move to pick up the mobile goal
-   chassis.turnToHeading(315, 1000, {}, false);
+   //pick up ring and score
 
-   chassis.moveToPoint(-5, -42, 5000, {.forwards=false}, false);
-   //pick up mogo
+   chassis.setPose(-62, 0, 90, false);
+   intake.on(600);
+   chassis.moveToPose(-24, -48, 135, 2700, {}, false);
+   intake.off();
+
+   latch.toggle();
+   chassis.turnToHeading(180, 2000);
+   chassis.moveToPoint(-24, -22, 5000, {.forwards=false, .maxSpeed=25}, false);
    latch.toggle();
 
-   pros::delay(5200);
-   intake.score(1000, -1);
+   pros::delay(500);
+   intake.score(1000, 1);
 
-
+   chassis.turnToHeading(0, 1000);
+   chassis.moveToPoint(-20, -2, 5000,  {.forwards=true}, false);
 }
 
 void Autonomous::Auton2(Intake &intake, Latch &latch)
 {
-   //Autonmous B: red mogo steal
+   //Autonomous winpoint blue negative side / red positive side
 
-   //Move to mobile goal line
-   chassis.setPose(-36, 60, 180);
-   chassis.moveToPose(-36, 16, 45, 5000);
-   intake.score(800, -1);
+   //score on alliance stake
 
-   //Move to mobile goal
-   chassis.moveToPose(-48, 8, 45, 5000);
+   chassis.setPose(-60, 12, 180);
+   chassis.moveToPose(-60, 0, 180, 5000);
+   chassis.turnToHeading(90, 1000);
+   chassis.moveToPoint(-65, 0, 1000, {.forwards=false});
+   intake.score(2000, 1);
 
-   //Clamp the mobile goal
+   //pick up ring and score
+
+   chassis.setPose(-62, 0, 90, false);
+   intake.on(600);
+   chassis.moveToPose(-24, 48, 45, 2700, {}, false);
+   intake.off();
+
+   latch.toggle();
+   chassis.turnToHeading(0, 2000);
+   chassis.moveToPoint(-24, 22, 5000, {.forwards=false, .maxSpeed=25}, false);
    latch.toggle();
 
-   //Score preloaded ring
-   intake.score(3000, 1);
+   pros::delay(500);
+   intake.score(1000, 1);
 
-   //Touch the bar
-   chassis.moveToPoint(60, 0, 5000);
+   chassis.turnToHeading(180, 1000);
+   chassis.moveToPoint(-20, 2, 5000,  {.forwards=true}, false);
 }
 
 void Autonomous::Auton3(Intake &intake, Latch &latch)

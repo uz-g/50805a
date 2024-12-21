@@ -78,6 +78,7 @@ void competition_initialize() {}
  */
 void autonomous() {
    subsystem.autonomous.AutoDrive(subsystem.intake, subsystem.latch);
+   // set position to x:0, y:0, heading:0
 }
 
 /**

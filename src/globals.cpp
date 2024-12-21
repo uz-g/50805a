@@ -16,17 +16,16 @@ namespace Globals {
 
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
 
-pros::MotorGroup intake({4, 10}, pros::v5::MotorGears::blue, pros::v5::MotorUnits::degrees);
+pros::MotorGroup intake({4, -8}, pros::v5::MotorGears::blue, pros::v5::MotorUnits::degrees);
 
 pros::adi::DigitalIn drivetrainToggleSwitch('G');
 pros::adi::DigitalIn autonToggleSwitch('F');
 
 pros::adi::Pneumatics LatchControl('H', false);
-pros::adi::Pneumatics IntakeToggle('B', false);
 
 pros::Imu inertial_sensor(2);
 
-pros::MotorGroup drive_right({20, -7, 18}, pros::v5::MotorGears::blue, pros::v5::MotorUnits::degrees);
+pros::MotorGroup drive_right({20, -17, 18}, pros::v5::MotorGears::blue, pros::v5::MotorUnits::degrees);
 pros::MotorGroup drive_left({-3, -5, 6}, pros::v5::MotorGears::blue, pros::v5::MotorUnits::degrees);
 
 // Describes the lemlib objects that are used to control the autonomous
